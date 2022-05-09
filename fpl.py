@@ -8,6 +8,13 @@ import numpy  as np
 # =================================================================================================
 
 
+# == Important Constants ==
+num_gwks     = 38 
+init_money   = 100
+avg_mnth_pts = 364 # Best performing players are hitting 364 points per month, this is approximately 4 game weeks per month
+avg_gw_pts   = avg_mnth_pts / 4 # this comes to 91 points per game week
+# =========================
+
 # == Import FPL Data ==============================================================================
 fileFPL = 'fplJSON.json'
 filePlayerList = 'fpl21-22-playerlist.csv'
@@ -31,8 +38,12 @@ dfFPL2022['Price']        = dfFPL2022['Price'].astype(float)
 
 
 dfFPL2022['Total Pts/Price'] = dfFPL2022['Points'] / dfFPL2022['Price']
-dfFPL2022 = dfFPL2022.sort_values(by=['Total Pts/Price'], ascending=False)
-print(dfFPL2022)
+dfFPL2022['Total pts / gameweek'] = dfFPL2022['Points'] / num_gwks
+dfFPL2022['Total pts/ Price / gwks'] = dfFPL2022['Total Pts/Price'] / num_gwks
+
+
+print(dfFPL2022.sort_values(by=['Total Pts/Price'], ascending=False).head(30))
+print(dfFPL2022.sort_values(by=['Total pts / gameweek'] , ascending=False).head(30))
 # =================================================================================================
 
 
