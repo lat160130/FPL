@@ -11,6 +11,7 @@ import numpy  as np
 # == Import FPL Data ==============================================================================
 fileFPL = 'fplJSON.json'
 filePlayerList = 'fpl21-22-playerlist.csv'
+fileFPLX = 'fpl_21_22_playerlist.xlsx'
 fplJson = json.load(open(fileFPL, 'r', encoding="utf8"))
 fplKeys = list(fplJson.keys())
 dfFPLElem   = pd.DataFrame(fplJson['elements'])
@@ -20,17 +21,16 @@ dfFPLSlim   = dfFPLElem[['second_name','team','element_type','selected_by_percen
 # print(dfFPLSlim)
 
 
-dfFPL2022 = pd.read_csv(filePlayerList, header=None, delim_whitespace=True, names = ('Name', 'Club', 'Total points', 'Price'))
+dfFPL2022 = pd.read_excel(fileFPLX)
 
 
-
-dfFPL2022['Total points'] = dfFPL2022['Total points'].astype(float)
+dfFPL2022['Points'] = dfFPL2022['Points'].astype(float)
 
 dfFPL2022['Price']        = dfFPL2022['Price'].str.replace('£', '')
 dfFPL2022['Price']        = dfFPL2022['Price'].astype(float)
 
 
-dfFPL2022['Total Pts/Price'] = dfFPL2022['Total points'] / dfFPL2022['Price']
+dfFPL2022['Total Pts/Price'] = dfFPL2022['Points'] / dfFPL2022['Price']
 dfFPL2022 = dfFPL2022.sort_values(by=['Total Pts/Price'], ascending=False)
 print(dfFPL2022)
 # =================================================================================================
