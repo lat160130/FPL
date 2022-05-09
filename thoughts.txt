@@ -1,0 +1,50 @@
+1. Buy Wins --> Buy Points/gameweek
+2. There are two ways to win. 
+    a) Most points over an entire season.
+    b) More points than the person you are playing per game week.
+3. Constraints:
+    a) $100,000 to spend for 14 players.
+    b) 2 goalkeepers
+    c) No more than 3 players from the same team
+    d) You must field 1 goalkeeper, 3,4,5,6 defenders, 3,4,5,6, midfielders, 0,1,2,3,4 fowards
+    e) 11 players must play per week.
+
+With respect to 1.  Begin with the maximum points earned in the last season, divide that by 38 gameweeks.
+This value is the target points per gameweek gV (tV).  We want to generate tV per gameweek.  This won't
+be possible to get every gameweek.
+
+4. Considerations:
+    a) Propensity for injury? --> this has an effect on points generated in a year
+    b) Propensity for yellow/red cards --> this has an effect on points generated in a year
+    c) Ignore triple captain.  It would be difficult to try an account for this.
+        Perhaps this can be added in a special gameweek hand manipulated based on
+        a strong team playing a weak team.
+    d) Consider trades if injuries occur.
+
+5. What gives points?
+    a) Playing up to 60 minutes                       -  1 point
+    b) Playing 60 minutes or more                     -  2 points
+    c) Goal scored by gk or defender                  -  6 points 
+    d) Goal scored by a midfielder                    -  5 points
+    e) Goal scored by a forward                       -  4 points
+    f) For each of assist for a goal                  -  6 points
+    g) For a clean sheet by a gk or defender          -  4 points
+    h) For a clean sheet by a midfielder              -  1 point
+    i) For every 3 shots saved by a gk                -  1 point/ 3 saves
+    j) For each penalty save                          -  5 points
+    k) For each penalty miss                          - -2 points
+    l) Bonus points for the best players in a match   - b/w 1-3 points
+    m) For every 2 goals conceded by a gk or defender - -1 points
+    n) For each yellow card                           - -1 points
+    o) For each red card                              - -3 points
+    p) For each own goal                              - -2 points
+
+6. What is a good predictor of points?
+    a) playing time?
+    b) exp goals?
+    c) time in the opponents 3rd
+    d) number of passes?
+    e) style of play?
+    f) money spent by club?
+    g) wages?
+
