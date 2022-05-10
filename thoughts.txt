@@ -47,4 +47,6 @@ be possible to get every gameweek.
     e) style of play?
     f) money spent by club?
     g) wages?
+    h) goals in a season?
+    i) goals allowed?
 
