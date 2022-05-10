@@ -3,9 +3,6 @@
 # Create a governing concept.  Create a regression model of f(goalsAllowed, goalsScored) = Win Percentage
 
 # == Import Block =================================================================================
-import json
-import sys
-import math as m
 import pandas as pd
 import numpy  as np
 import seaborn as sns
@@ -53,19 +50,31 @@ errAvg = errPl / entries
 print(errAvg)
 
 fig = plt.figure()
-ax = fig.gca(projection='3d')
-surf = ax.scatter(dfPL['GF'], dfPL['GA'], dfPL['WP'])
+ax = fig.add_subplot(projection='3d')
+scPlot = ax.scatter(dfPL['GF'], dfPL['GA'], dfPL['WP'])
 ax.set_xlabel('Goals For')
 ax.set_ylabel('Goals Allowed')
 ax.set_zlabel('Win Percentage')
-
+ax.title.set_text('GF v. GA v. Win Percentage for years spent in the PL')
 X = dfPL[['GF', 'GA']]
 y = dfPL['WP']
 ols = linear_model.LinearRegression()
 model = ols.fit(X,y)
 
+dx = 100
+dy = dx
+gf = np.linspace(0,2200, dx)
+ga = np.linspace(0,1500, dy)
+ggff, ggaa = np.meshgrid(gf,ga)
+b = model.intercept_
+kgF = model.coef_[0]
+kgA = model.coef_[1]
+predWP = b + kgF*ggff + kgA*ggaa
+# ax = plt.figure().gca(projection='3d')
+ax.plot_surface(ggff, ggaa, predWP, color='green', alpha=0.25)
+
 print(model.coef_)
-print(model.intercept_)
+print(b)
 print(model.score(X,y))
 
 plt.show()
