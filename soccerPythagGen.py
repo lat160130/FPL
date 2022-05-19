@@ -73,11 +73,17 @@ predWP = b + kgF*ggff + kgA*ggaa
 # ax = plt.figure().gca(projection='3d')
 ax.plot_surface(ggff, ggaa, predWP, color='green', alpha=0.25)
 
-print(model.coef_)
-print(b)
-print(model.score(X,y))
+print("Goals For     coefficient = {0}".format(kgF))
+print("Goals Against coefficient = {0}".format(kgA))
+
+print("Y intercept = {0}".format(b))
+print("R2 = {0}".format(model.score(X,y)))
 
 plt.show()
+
+
+
+# CREATE PANDAS PROFILING REPORT
 """ profile = pp.ProfileReport(dfPL)
 profile.to_file("PL_alltime_correl.html") """
 # =================================================================================================
