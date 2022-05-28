@@ -15,16 +15,18 @@ from sklearn import linear_model
 # =================================================================================================
 
 # == Constants ===
-exp = 1
-entries = 49
+exponent = 1 # this is an exponential value used in a goals scored,goals allowed --> wins equation: Ratio = Goals Scored / Goals Allowed -->      winsPredicted = (Ratio^exponent) / ((Ratio^exponent)^2 + 1) 
+entries = 49 # number of premier league teams in the database - currently 49 as of last updated from the wikipedia entry.  Update at the end of each league.
 # ================
 
 # == Import PL Results by year ====================================================================
 filePL  = 'allTimePrem.xlsx'
-dfPL = pd.read_excel(filePL)
+dfPL = pd.read_excel(filePL)  # import data from excel
 
+
+# CREATE NEW COLUMNS
 dfPL['R'] = dfPL['GF'] / dfPL['GA']
-dfPL['Ratio ^ exp'] = pow(dfPL['R'], exp) 
+dfPL['Ratio ^ exp'] = pow(dfPL['R'], exponent) # COLUMN OF (GOALS SCORED/GOALS ALLOWED) 
 
 dfPL['WP'] = dfPL['W'] / dfPL['Pld']
 dfPL['NotWin%'] = 1 - dfPL['WP']

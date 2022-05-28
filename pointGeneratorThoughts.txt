@@ -1,0 +1,18 @@
+This text file contains thoughts on what could possibly predict next season point results for each player.
+
+
+Goalkeepers:
+Age, points last season, points their defenders scored last season, shutouts in their career, number of injuries in career.
+
+
+Field Players:
+Age, points last season, number of injuries in career, number of wins, team arriving at, likely bench or starter.
+
+
+Create a linear regression model that tries to accurately predict points based on the above variables.
+
+Interesting ideas:
+
+PCA to try and grab the important variables.
+If possible do NOT purchase above the age of 32 unless they are goalkeepers, exceptions could be made for defenders based on their team and experience.
+
